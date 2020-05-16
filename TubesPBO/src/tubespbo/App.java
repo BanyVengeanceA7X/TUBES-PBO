@@ -38,6 +38,39 @@ public class App extends javax.swing.JFrame {
         laman_firstscreen = new javax.swing.JPanel();
         background = new javax.swing.JLabel();
         laman_create = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        lbl_err1 = new javax.swing.JPanel();
+        lbl_err2 = new javax.swing.JPanel();
+        lbl_err3 = new javax.swing.JPanel();
+        lbl_err4 = new javax.swing.JPanel();
+        lbl_err5 = new javax.swing.JPanel();
+        lbnama_mk = new javax.swing.JLabel();
+        lbkode_matkul = new javax.swing.JLabel();
+        lbkode_kelas = new javax.swing.JLabel();
+        lb_sks = new javax.swing.JLabel();
+        lb_hari = new javax.swing.JLabel();
+        lb_waktu = new javax.swing.JLabel();
+        lbruangan = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        jSeparator10 = new javax.swing.JSeparator();
+        jSeparator11 = new javax.swing.JSeparator();
+        input_kodemk = new javax.swing.JTextField();
+        input_kodekelas = new javax.swing.JTextField();
+        input_ruangan = new javax.swing.JTextField();
+        input_namamk = new javax.swing.JTextField();
+        input_waktu = new javax.swing.JTextField();
+        input_hari = new javax.swing.JComboBox<>();
+        jSeparator12 = new javax.swing.JSeparator();
+        input_sks = new javax.swing.JComboBox<>();
+        cancel = new javax.swing.JButton();
+        save = new javax.swing.JButton();
         background_create = new javax.swing.JLabel();
         laman_jadwal = new javax.swing.JPanel();
         scrool_jadwal = new javax.swing.JScrollPane();
@@ -169,6 +202,220 @@ public class App extends javax.swing.JFrame {
 
         laman_create.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Membuat Jadwal");
+        laman_create.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, -1, -1));
+        laman_create.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 70, 52, 10));
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        laman_create.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 25, 20, 46));
+        laman_create.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 52, 10));
+
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        laman_create.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 20, 46));
+
+        lbl_err1.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_err1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        lbl_err1.setOpaque(false);
+
+        javax.swing.GroupLayout lbl_err1Layout = new javax.swing.GroupLayout(lbl_err1);
+        lbl_err1.setLayout(lbl_err1Layout);
+        lbl_err1Layout.setHorizontalGroup(
+            lbl_err1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 216, Short.MAX_VALUE)
+        );
+        lbl_err1Layout.setVerticalGroup(
+            lbl_err1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        laman_create.add(lbl_err1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 160, 220, 40));
+
+        lbl_err2.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_err2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        lbl_err2.setOpaque(false);
+
+        javax.swing.GroupLayout lbl_err2Layout = new javax.swing.GroupLayout(lbl_err2);
+        lbl_err2.setLayout(lbl_err2Layout);
+        lbl_err2Layout.setHorizontalGroup(
+            lbl_err2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        lbl_err2Layout.setVerticalGroup(
+            lbl_err2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        laman_create.add(lbl_err2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 230, -1, 40));
+
+        lbl_err3.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_err3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        lbl_err3.setOpaque(false);
+
+        javax.swing.GroupLayout lbl_err3Layout = new javax.swing.GroupLayout(lbl_err3);
+        lbl_err3.setLayout(lbl_err3Layout);
+        lbl_err3Layout.setHorizontalGroup(
+            lbl_err3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 216, Short.MAX_VALUE)
+        );
+        lbl_err3Layout.setVerticalGroup(
+            lbl_err3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        laman_create.add(lbl_err3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 300, 220, -1));
+
+        lbl_err4.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_err4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        lbl_err4.setOpaque(false);
+
+        javax.swing.GroupLayout lbl_err4Layout = new javax.swing.GroupLayout(lbl_err4);
+        lbl_err4.setLayout(lbl_err4Layout);
+        lbl_err4Layout.setHorizontalGroup(
+            lbl_err4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        lbl_err4Layout.setVerticalGroup(
+            lbl_err4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        laman_create.add(lbl_err4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 370, -1, 40));
+
+        lbl_err5.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_err5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        lbl_err5.setOpaque(false);
+
+        javax.swing.GroupLayout lbl_err5Layout = new javax.swing.GroupLayout(lbl_err5);
+        lbl_err5.setLayout(lbl_err5Layout);
+        lbl_err5Layout.setHorizontalGroup(
+            lbl_err5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 216, Short.MAX_VALUE)
+        );
+        lbl_err5Layout.setVerticalGroup(
+            lbl_err5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        laman_create.add(lbl_err5, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 500, -1, -1));
+
+        lbnama_mk.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbnama_mk.setForeground(new java.awt.Color(255, 255, 255));
+        lbnama_mk.setText("Nama Matakuliah :");
+        laman_create.add(lbnama_mk, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 370, -1, -1));
+
+        lbkode_matkul.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbkode_matkul.setForeground(new java.awt.Color(255, 255, 255));
+        lbkode_matkul.setText("Kode Matakuliah   :");
+        laman_create.add(lbkode_matkul, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, -1, -1));
+
+        lbkode_kelas.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbkode_kelas.setForeground(new java.awt.Color(255, 255, 255));
+        lbkode_kelas.setText("Kode Kelas           :");
+        laman_create.add(lbkode_kelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 230, -1, -1));
+
+        lb_sks.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lb_sks.setForeground(new java.awt.Color(255, 255, 255));
+        lb_sks.setText("SKS                     :");
+        laman_create.add(lb_sks, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 440, -1, -1));
+
+        lb_hari.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lb_hari.setForeground(new java.awt.Color(255, 255, 255));
+        lb_hari.setText("Hari                      :");
+        laman_create.add(lb_hari, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 500, -1, -1));
+
+        lb_waktu.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lb_waktu.setForeground(new java.awt.Color(255, 255, 255));
+        lb_waktu.setText("Waktu                  :");
+        laman_create.add(lb_waktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 570, -1, -1));
+
+        lbruangan.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbruangan.setForeground(new java.awt.Color(255, 255, 255));
+        lbruangan.setText("Ruangan              :");
+        laman_create.add(lbruangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 300, -1, -1));
+        laman_create.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 330, 190, 20));
+        laman_create.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 190, 190, 20));
+        laman_create.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 473, 40, 20));
+        laman_create.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 533, 190, 20));
+        laman_create.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 600, 190, 20));
+        laman_create.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 260, 190, 20));
+
+        input_kodemk.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
+        input_kodemk.setForeground(new java.awt.Color(255, 255, 255));
+        input_kodemk.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        input_kodemk.setBorder(null);
+        input_kodemk.setOpaque(false);
+        laman_create.add(input_kodemk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 160, 190, -1));
+
+        input_kodekelas.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
+        input_kodekelas.setForeground(new java.awt.Color(255, 255, 255));
+        input_kodekelas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        input_kodekelas.setText("R");
+        input_kodekelas.setBorder(null);
+        input_kodekelas.setOpaque(false);
+        input_kodekelas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                input_kodekelasKeyPressed(evt);
+            }
+        });
+        laman_create.add(input_kodekelas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 230, 190, -1));
+
+        input_ruangan.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
+        input_ruangan.setForeground(new java.awt.Color(255, 255, 255));
+        input_ruangan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        input_ruangan.setBorder(null);
+        input_ruangan.setOpaque(false);
+        laman_create.add(input_ruangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 300, 190, -1));
+
+        input_namamk.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
+        input_namamk.setForeground(new java.awt.Color(255, 255, 255));
+        input_namamk.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        input_namamk.setBorder(null);
+        input_namamk.setOpaque(false);
+        laman_create.add(input_namamk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 370, 190, -1));
+
+        input_waktu.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
+        input_waktu.setForeground(new java.awt.Color(255, 255, 255));
+        input_waktu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        input_waktu.setText("00:00:00");
+        input_waktu.setBorder(null);
+        input_waktu.setOpaque(false);
+        input_waktu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                input_waktuKeyPressed(evt);
+            }
+        });
+        laman_create.add(input_waktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 570, 190, -1));
+
+        input_hari.setBackground(new java.awt.Color(240, 240, 240));
+        input_hari.setForeground(new java.awt.Color(240, 240, 240));
+        input_hari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Hari :", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
+        input_hari.setBorder(null);
+        input_hari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        laman_create.add(input_hari, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 500, 190, 30));
+        laman_create.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 400, 190, 30));
+
+        input_sks.setBackground(new java.awt.Color(240, 240, 240));
+        input_sks.setForeground(new java.awt.Color(240, 240, 240));
+        input_sks.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        input_sks.setBorder(null);
+        input_sks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        input_sks.setOpaque(false);
+        laman_create.add(input_sks, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 440, 40, 30));
+
+        cancel.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        cancel.setForeground(new java.awt.Color(255, 255, 255));
+        cancel.setText("CANCEL");
+        cancel.setBorder(null);
+        laman_create.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 640, 90, 30));
+
+        save.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        save.setForeground(new java.awt.Color(255, 255, 255));
+        save.setText("SAVE");
+        save.setBorder(null);
+        laman_create.add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(1173, 640, 80, 30));
+
         background_create.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bg_create1.png"))); // NOI18N
         background_create.setText("jLabel1");
         background_create.setMaximumSize(new java.awt.Dimension(6038, 4000));
@@ -254,6 +501,13 @@ public class App extends javax.swing.JFrame {
         wallpaper_first.setVisible(false);
         sp1.setVisible(true);
         sp2.setVisible(false);
+        
+        //LABEL ERROR KETIKA DATA KOSONG
+        lbl_err1.setVisible(false); //Label Kode matakuliah
+        lbl_err2.setVisible(false); //Label Ruangan
+        lbl_err3.setVisible(false); //Label Nama matakuliah
+        lbl_err4.setVisible(false); //Label SKS
+        lbl_err5.setVisible(false); //Label Hari
 
         laman_firstscreen.setVisible(false);
         laman_jadwal.setVisible(false);
@@ -267,6 +521,16 @@ public class App extends javax.swing.JFrame {
         lb_jadwal.setForeground(Color.white);
         lb_create.setForeground(Color.white);
         lb_navbar.setForeground(Color.white);
+        
+        input_kodemk.setBackground(new Color(0,0,0,5));
+        input_kodekelas.setBackground(new Color(0,0,0,5));
+        input_namamk.setBackground(new Color(0,0,0,5));
+        input_hari.setBackground(new Color(0,0,0,0));
+        input_sks.setBackground(new Color(0,0,0,0));
+        input_ruangan.setBackground(new Color(0,0,0,5));
+        input_waktu.setBackground(new Color(0,0,0,5));
+        save.setBackground(new Color(0,0,0,1));
+        cancel.setBackground(new Color(0,0,0,1));
     }//GEN-LAST:event_lb_createMouseClicked
 
     private void lb_createMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_createMouseEntered
@@ -320,6 +584,28 @@ public class App extends javax.swing.JFrame {
         mouseY = evt.getY();
     }//GEN-LAST:event_panel_dasarMousePressed
 
+    private void input_waktuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_waktuKeyPressed
+        char c = evt.getKeyChar();
+        //Untuk memasukkan jenis input Angka
+        if(Character.isLetter(c)){
+            input_waktu.setEditable(false);
+
+        }else{
+            input_waktu.setEditable(true);
+        }
+    }//GEN-LAST:event_input_waktuKeyPressed
+
+    private void input_kodekelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_kodekelasKeyPressed
+        char c = evt.getKeyChar();
+        //Untuk memasukkan jenis Text
+        if(Character.isLetter(c)){
+            input_kodekelas.setEditable(true);
+
+        }else{
+            input_kodekelas.setEditable(false);
+        }
+    }//GEN-LAST:event_input_kodekelasKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -351,6 +637,9 @@ public class App extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new App().setVisible(true);
+                App App = new App();
+                
+                
             }
         });
     }
@@ -360,20 +649,53 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JLabel background_create;
     private javax.swing.JLabel background_jadwal;
+    private javax.swing.JButton cancel;
     private javax.swing.JLabel exit;
+    private javax.swing.JComboBox<String> input_hari;
+    private javax.swing.JTextField input_kodekelas;
+    private javax.swing.JTextField input_kodemk;
+    private javax.swing.JTextField input_namamk;
+    private javax.swing.JTextField input_ruangan;
+    private javax.swing.JComboBox<String> input_sks;
+    private javax.swing.JTextField input_waktu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTable jadwal;
     private javax.swing.JPanel laman_create;
     private javax.swing.JPanel laman_firstscreen;
     private javax.swing.JPanel laman_jadwal;
     private javax.swing.JLabel lb_create;
+    private javax.swing.JLabel lb_hari;
     private javax.swing.JLabel lb_jadwal;
     private javax.swing.JLabel lb_navbar;
+    private javax.swing.JLabel lb_sks;
+    private javax.swing.JLabel lb_waktu;
+    private javax.swing.JLabel lbkode_kelas;
+    private javax.swing.JLabel lbkode_matkul;
+    private javax.swing.JPanel lbl_err1;
+    private javax.swing.JPanel lbl_err2;
+    private javax.swing.JPanel lbl_err3;
+    private javax.swing.JPanel lbl_err4;
+    private javax.swing.JPanel lbl_err5;
+    private javax.swing.JLabel lbnama_mk;
+    private javax.swing.JLabel lbruangan;
     private javax.swing.JLabel maximize;
     private javax.swing.JScrollPane menu;
     private javax.swing.JLabel minimize;
     private javax.swing.JPanel panel_create;
     private javax.swing.JPanel panel_dasar;
     private javax.swing.JPanel panel_menu;
+    private javax.swing.JButton save;
     private javax.swing.JScrollPane scrool_jadwal;
     private javax.swing.JPanel show_jadwal;
     private javax.swing.JSeparator sp1;
