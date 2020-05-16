@@ -11,14 +11,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
+
 /**
  *
  * @author muhasfk
  */
 public class Koneksi {
-      private static String servername="localhost";
+       private static String servername="localhost";
     private static String username="root";
-    private static String dbname="Reminder";
+    private static String dbname="reminder";
     private static int portnumber=3306;
     private static String password="root";
     
@@ -50,4 +51,3 @@ public class Koneksi {
     }
     
 }
-

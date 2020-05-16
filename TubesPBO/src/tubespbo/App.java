@@ -1,9 +1,19 @@
 package tubespbo;
 
 import AppPackage.AnimationClass;
+import Koneksi.Db_Koneksi;
 import java.awt.Color;
+import java.sql.JDBCType.TIME;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types.TIME;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
 
 public class App extends javax.swing.JFrame {
     AnimationClass animasi_slide = new AnimationClass();
@@ -15,6 +25,69 @@ public class App extends javax.swing.JFrame {
         sp1.setVisible(false);
         sp2.setVisible(false);
     }
+    //ini ban.. untuk masukin ke databasenya
+    String KodeMK, KodeKLS, Ruangan, NamaMataKuliah, Hari;
+     int sks;
+     TIME time;
+      private DefaultTableModel model;
+      
+        public void getReminder(){
+       model.getDataVector();
+       model.fireTableDataChanged();
+      
+       this.setLocationRelativeTo(null);
+       try{
+           com.mysql.jdbc.Statement stat = (com.mysql.jdbc.Statement) Db_Koneksi.getKoneksi().createStatement();
+           String sql = "select * from Jadwal";
+           ResultSet res = stat.executeQuery(sql);
+           while(res.next()){
+               Object[] obj = new Object[5];
+               obj[0]=res.getString("KodeMataKuliah");
+               obj[1]=res.getString("KodeKelas");
+               obj[2]=res.getString("Ruangan");
+               obj[3]=res.getString("NamaMataKuliah");
+               obj[4]=res.getString("SKS");
+               obj[5]=res.getString("Hari");
+               obj[6]=res.getString("Waktu");
+               
+               model.addRow(obj);
+           }
+       }catch(SQLException err){
+           
+       }
+   }
+     
+   
+     public void loadData(){
+         KodeMK = input_kodemk.getText();
+         KodeKLS = input_kodekelas.getText();
+         NamaMataKuliah = input_namamk.getText();
+         Hari = (String) input_hari.getSelectedItem();
+         sks =  (int) input_sks.getValue(); 
+         Ruangan =  input_ruangan.getText(); 
+         time =  input_waktu.getText(); 
+        }
+      
+     public void savedata(){
+         loadData();
+         try{
+             Statement stat = (Statement) Db_Koneksi.getKoneksi().createStatement();
+             String sql = "Insert into Jadwal (KodeMataKuliah,KodeKelas,Ruangan,NamaMataKuliah,SKS,Hari,Waktu)"
+                    +"values ('"+KodeMK +"','"+ KodeKLS+"','"+ NamaMataKuliah +"','"+ Hari+"','"+ sks+"','"+ Ruangan+"','"+ time+"')";
+             PreparedStatement p = (PreparedStatement) Db_Koneksi.getKoneksi().prepareStatement(sql);
+             p.executeUpdate();
+             
+             JOptionPane.showMessageDialog(null, "Input Berhasil!");
+             
+         }catch(SQLException err){
+             JOptionPane.showMessageDialog(null, " Ulangi inputan!","Terjadi Kesalahan pada inputan!", 2);
+         }
+     }
+     
+    //sampe sini
+
+      
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
