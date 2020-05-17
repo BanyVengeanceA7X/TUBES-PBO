@@ -25,6 +25,7 @@ public class App extends javax.swing.JFrame {
         initComponents();
         sp1.setVisible(false);
         sp2.setVisible(false);
+          
     }
     //ini ban.. untuk masukin ke databasenya
     String KodeMK, KodeKLS, Ruangan, NamaMataKuliah, Hari, time, sks;
@@ -38,11 +39,11 @@ public class App extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         try{
-            com.mysql.jdbc.Statement stat = (com.mysql.jdbc.Statement) Db_Koneksi.getKoneksi().createStatement();
-            String sql = "select * from Jadwal";
+            com.mysql.jdbc.Statement stat = (com.mysql.jdbc.Statement) Koneksi.getKoneksi().createStatement();
+            String sql = "select * from jadwal";
             ResultSet res = stat.executeQuery(sql);
             while(res.next()){
-                Object[] obj = new Object[5];
+                Object[] obj = new Object[7];
                 obj[0]=res.getString("KodeMataKuliah");
                 obj[1]=res.getString("KodeKelas");
                 obj[2]=res.getString("Ruangan");
@@ -629,6 +630,18 @@ public class App extends javax.swing.JFrame {
         scrool_jadwal.getViewport().setOpaque(false);
         jadwal.setShowGrid(false);
         ((DefaultTableCellRenderer)jadwal.getDefaultRenderer(Object.class)).setOpaque(false);
+        this.setLocationRelativeTo(null);
+            model = new DefaultTableModel();
+       jadwal.setModel(model);
+        model.addColumn("Kode Mata Kuliah");
+        model.addColumn("Kode Kelas");
+        model.addColumn("Ruangan");
+        model.addColumn("Nama Mata Kuliah");
+        model.addColumn("SKS");
+        model.addColumn("Hari");
+        model.addColumn("Waktu");
+        
+        getReminder();
     }//GEN-LAST:event_lb_jadwalMouseClicked
 
     private void lb_jadwalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_jadwalMouseEntered

@@ -18,7 +18,7 @@ public class Db_Koneksi {
     public static Connection getKoneksi(){
         String host = "jdbc:mysql://localhost/reminder",
                user = "root",
-               pass = "root";
+               pass = "";
          try{
              conn = (Connection) DriverManager.getConnection(host, user, pass);
             
