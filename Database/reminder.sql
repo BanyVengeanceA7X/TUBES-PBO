@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 16, 2020 at 06:01 PM
+-- Generation Time: May 17, 2020 at 09:28 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.4.2
 
@@ -33,7 +33,7 @@ CREATE TABLE `Jadwal` (
   `NamaMataKuliah` varchar(50) NOT NULL,
   `SKS` int(100) NOT NULL,
   `Hari` varchar(10) NOT NULL,
-  `Waktu` time NOT NULL
+  `Waktu` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

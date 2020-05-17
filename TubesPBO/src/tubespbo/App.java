@@ -3,12 +3,12 @@ package tubespbo;
 import AppPackage.AnimationClass;
 import Koneksi.Db_Koneksi;
 import java.awt.Color;
-import java.sql.JDBCType.TIME;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types.TIME;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -26,9 +26,9 @@ public class App extends javax.swing.JFrame {
         sp2.setVisible(false);
     }
     //ini ban.. untuk masukin ke databasenya
-    String KodeMK, KodeKLS, Ruangan, NamaMataKuliah, Hari;
+    String KodeMK, KodeKLS, Ruangan, NamaMataKuliah, Hari, time;
      int sks;
-     TIME time;
+     
       private DefaultTableModel model;
       
         public void getReminder(){
@@ -63,7 +63,7 @@ public class App extends javax.swing.JFrame {
          KodeKLS = input_kodekelas.getText();
          NamaMataKuliah = input_namamk.getText();
          Hari = (String) input_hari.getSelectedItem();
-         sks =  (int) input_sks.getValue(); 
+         sks =  (Integer) input_sks.getSelectedItem(); 
          Ruangan =  input_ruangan.getText(); 
          time =  input_waktu.getText(); 
         }
@@ -418,7 +418,6 @@ public class App extends javax.swing.JFrame {
         input_kodemk.setForeground(new java.awt.Color(255, 255, 255));
         input_kodemk.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         input_kodemk.setBorder(null);
-        input_kodemk.setOpaque(false);
         laman_create.add(input_kodemk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 160, 190, -1));
 
         input_kodekelas.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
@@ -426,7 +425,6 @@ public class App extends javax.swing.JFrame {
         input_kodekelas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         input_kodekelas.setText("R");
         input_kodekelas.setBorder(null);
-        input_kodekelas.setOpaque(false);
         input_kodekelas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 input_kodekelasKeyPressed(evt);
@@ -438,14 +436,12 @@ public class App extends javax.swing.JFrame {
         input_ruangan.setForeground(new java.awt.Color(255, 255, 255));
         input_ruangan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         input_ruangan.setBorder(null);
-        input_ruangan.setOpaque(false);
         laman_create.add(input_ruangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 300, 190, -1));
 
         input_namamk.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
         input_namamk.setForeground(new java.awt.Color(255, 255, 255));
         input_namamk.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         input_namamk.setBorder(null);
-        input_namamk.setOpaque(false);
         laman_create.add(input_namamk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 370, 190, -1));
 
         input_waktu.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
@@ -453,7 +449,6 @@ public class App extends javax.swing.JFrame {
         input_waktu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         input_waktu.setText("00:00:00");
         input_waktu.setBorder(null);
-        input_waktu.setOpaque(false);
         input_waktu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 input_waktuKeyPressed(evt);
@@ -464,7 +459,6 @@ public class App extends javax.swing.JFrame {
         input_hari.setBackground(new java.awt.Color(240, 240, 240));
         input_hari.setForeground(new java.awt.Color(240, 240, 240));
         input_hari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Hari :", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
-        input_hari.setBorder(null);
         input_hari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         laman_create.add(input_hari, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 500, 190, 30));
         laman_create.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 400, 190, 30));
@@ -472,9 +466,7 @@ public class App extends javax.swing.JFrame {
         input_sks.setBackground(new java.awt.Color(240, 240, 240));
         input_sks.setForeground(new java.awt.Color(240, 240, 240));
         input_sks.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
-        input_sks.setBorder(null);
         input_sks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        input_sks.setOpaque(false);
         laman_create.add(input_sks, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 440, 40, 30));
 
         cancel.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -487,6 +479,11 @@ public class App extends javax.swing.JFrame {
         save.setForeground(new java.awt.Color(255, 255, 255));
         save.setText("SAVE");
         save.setBorder(null);
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
         laman_create.add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(1173, 640, 80, 30));
 
         background_create.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bg_create1.png"))); // NOI18N
@@ -678,6 +675,47 @@ public class App extends javax.swing.JFrame {
             input_kodekelas.setEditable(false);
         }
     }//GEN-LAST:event_input_kodekelasKeyPressed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        // TODO add your handling code here:
+        savedata();
+       PreparedStatement st;
+       ResultSet rs;
+
+         KodeMK = input_kodemk.getText();
+         KodeKLS = input_kodekelas.getText();
+         NamaMataKuliah = input_namamk.getText();
+         Hari = (String) input_hari.getSelectedItem();
+         sks =  (Integer) input_sks.getSelectedItem(); 
+         Ruangan =  input_ruangan.getText(); 
+         time =  input_waktu.getText(); 
+ 
+        PreparedStatement ps;
+        //ResultSet rs;
+
+        String registerUserQuery = "INSERT INTO `jadwal`(`KodeMataKuliah`,`KodeKelas`,`Ruangan`,`NamaMataKuliah`,'SKS','Hari','Waktu') VALUES (?,?,?,?,?,?,?)";
+
+        try {
+            ps = Koneksi.getConnection().prepareStatement(registerUserQuery);
+            ps.setString(1, KodeMK);
+            ps.setString(2, KodeKLS);
+            ps.setString(3, NamaMataKuliah);
+            ps.setString(4, Hari);
+            ps.setString(5, sks);
+            ps.setString(6, Ruangan);
+            ps.setString(7, time);
+            
+
+            if(ps.executeUpdate() != 0){
+                JOptionPane.showMessageDialog(null, "Input Jadwal Berhasil Berhasil!!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error: Harap cek kembali");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_saveActionPerformed
 
     /**
      * @param args the command line arguments
