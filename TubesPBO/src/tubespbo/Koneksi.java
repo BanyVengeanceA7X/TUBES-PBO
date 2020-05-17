@@ -7,9 +7,11 @@ package tubespbo;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -17,37 +19,21 @@ import java.util.logging.Level;
  * @author muhasfk
  */
 public class Koneksi {
-       private static String servername="localhost";
-    private static String username="root";
-    private static String dbname="reminder";
-    private static int portnumber=3306;
-    private static String password="root";
-    
-    public static Connection getConnection (){
-        Connection cnx = null;
-        MysqlDataSource datasource = new MysqlDataSource();
-        
-        datasource.setServerName(servername);
-        datasource.setUser(username);
-        datasource.setPassword(password);
-        datasource.setDatabaseName(dbname);
-        datasource.setPortNumber(portnumber);
-        
-        try {
-            cnx = datasource.getConnection();
-        } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(" Get Connection" + Koneksi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-   
-        return cnx;
-    }
-    
-    public static void setData (String s) throws Exception{
-        Koneksi.getConnection().createStatement().executeUpdate(s);
-    }
-    public static ResultSet getData(String sq) throws Exception{
-        return Koneksi.getConnection().createStatement().executeQuery(sq);
+    private static Connection con;
+        public static Connection getKoneksi(){
+            String host = "jdbc:mysql://localhost/reminder",
+                   user = "root",
+                   ps   = "";
+        try{
+            con =(Connection) DriverManager.getConnection(host,user,ps);
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            System.out.println("Database dapat digunakan");
+       
+       }catch(SQLException err){
+           JOptionPane.showMessageDialog(null, err.getMessage());
+           System.out.println("Gagal");
+       }
+       return con;
     }
     
 }

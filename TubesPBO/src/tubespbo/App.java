@@ -3,6 +3,7 @@ package tubespbo;
 import AppPackage.AnimationClass;
 import Koneksi.Db_Koneksi;
 import java.awt.Color;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,35 +30,34 @@ public class App extends javax.swing.JFrame {
     String KodeMK, KodeKLS, Ruangan, NamaMataKuliah, Hari, time, sks;
    
      
-      private DefaultTableModel model;
+    private DefaultTableModel model;
       
-        public void getReminder(){
-       model.getDataVector();
-       model.fireTableDataChanged();
-      
-       this.setLocationRelativeTo(null);
-       try{
-           com.mysql.jdbc.Statement stat = (com.mysql.jdbc.Statement) Db_Koneksi.getKoneksi().createStatement();
-           String sql = "select * from Jadwal";
-           ResultSet res = stat.executeQuery(sql);
-           while(res.next()){
-               Object[] obj = new Object[5];
-               obj[0]=res.getString("KodeMataKuliah");
-               obj[1]=res.getString("KodeKelas");
-               obj[2]=res.getString("Ruangan");
-               obj[3]=res.getString("NamaMataKuliah");
-               obj[4]=res.getString("SKS");
-               obj[5]=res.getString("Hari");
-               obj[6]=res.getString("Waktu");
-               
-               model.addRow(obj);
-           }
-       }catch(SQLException err){
-           
-       }
+    public void getReminder(){
+        model.getDataVector();
+        model.fireTableDataChanged();
+
+        this.setLocationRelativeTo(null);
+        try{
+            com.mysql.jdbc.Statement stat = (com.mysql.jdbc.Statement) Db_Koneksi.getKoneksi().createStatement();
+            String sql = "select * from Jadwal";
+            ResultSet res = stat.executeQuery(sql);
+            while(res.next()){
+                Object[] obj = new Object[5];
+                obj[0]=res.getString("KodeMataKuliah");
+                obj[1]=res.getString("KodeKelas");
+                obj[2]=res.getString("Ruangan");
+                obj[3]=res.getString("NamaMataKuliah");
+                obj[4]=res.getString("SKS");
+                obj[5]=res.getString("Hari");
+                obj[6]=res.getString("Waktu");
+
+                model.addRow(obj);
+            }
+        }catch(SQLException err){
+
+        }
    }
      
-   
      public void loadData(){
          KodeMK = input_kodemk.getText();
          KodeKLS = input_kodekelas.getText();
@@ -71,11 +71,12 @@ public class App extends javax.swing.JFrame {
      public void savedata(){
          loadData();
          try{
-             Statement stat = (Statement) Db_Koneksi.getKoneksi().createStatement();
+             Statement stat = (Statement) Koneksi.getKoneksi().createStatement();
              String sql = "Insert into Jadwal (KodeMataKuliah,KodeKelas,Ruangan,NamaMataKuliah,SKS,Hari,Waktu)"
-                    +"values ('"+KodeMK +"','"+ KodeKLS+"','"+ NamaMataKuliah +"','"+ Hari+"','"+ sks+"','"+ Ruangan+"','"+ time+"')";
-             PreparedStatement p = (PreparedStatement) Db_Koneksi.getKoneksi().prepareStatement(sql);
-             p.executeUpdate();
+                    +"values ('"+KodeMK +"','"+ KodeKLS+"','"+Ruangan+"','"+NamaMataKuliah+"','"+ sks+"','"+ Hari+"','"+ time+"')";
+            Connection conn=(Connection)Koneksi.getKoneksi();
+            PreparedStatement pst=conn.prepareStatement(sql);
+            pst.execute();
              
              JOptionPane.showMessageDialog(null, "Input Berhasil!");
              
@@ -84,11 +85,6 @@ public class App extends javax.swing.JFrame {
          }
      }
      
-    //sampe sini
-
-      
-    
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -679,42 +675,6 @@ public class App extends javax.swing.JFrame {
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
         savedata();
-       PreparedStatement st;
-       ResultSet rs;
-
-         KodeMK = input_kodemk.getText();
-         KodeKLS = input_kodekelas.getText();
-         NamaMataKuliah = input_namamk.getText();
-         Hari = (String) input_hari.getSelectedItem();
-         sks =  (String) input_sks.getSelectedItem(); 
-         Ruangan =  input_ruangan.getText(); 
-         time =  input_waktu.getText(); 
- 
-        PreparedStatement ps;
-        //ResultSet rs;
-
-        String registerUserQuery = "INSERT INTO `jadwal`(`KodeMataKuliah`,`KodeKelas`,`Ruangan`,`NamaMataKuliah`,'SKS','Hari','Waktu') VALUES (?,?,?,?,?,?,?)";
-
-        try {
-            ps = Koneksi.getConnection().prepareStatement(registerUserQuery);
-            ps.setString(1, KodeMK);
-            ps.setString(2, KodeKLS);
-            ps.setString(3, NamaMataKuliah);
-            ps.setString(4, Hari);
-            ps.setString(5, sks);
-            ps.setString(6, Ruangan);
-            ps.setString(7, time);
-            
-
-            if(ps.executeUpdate() != 0){
-                JOptionPane.showMessageDialog(null, "Input Jadwal Berhasil Berhasil!!");
-            }else{
-                JOptionPane.showMessageDialog(null, "Error: Harap cek kembali");
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_saveActionPerformed
 
     /**
