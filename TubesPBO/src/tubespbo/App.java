@@ -26,8 +26,8 @@ public class App extends javax.swing.JFrame {
         sp2.setVisible(false);
     }
     //ini ban.. untuk masukin ke databasenya
-    String KodeMK, KodeKLS, Ruangan, NamaMataKuliah, Hari, time;
-     int sks;
+    String KodeMK, KodeKLS, Ruangan, NamaMataKuliah, Hari, time, sks;
+   
      
       private DefaultTableModel model;
       
@@ -63,7 +63,7 @@ public class App extends javax.swing.JFrame {
          KodeKLS = input_kodekelas.getText();
          NamaMataKuliah = input_namamk.getText();
          Hari = (String) input_hari.getSelectedItem();
-         sks =  (Integer) input_sks.getSelectedItem(); 
+         sks =  (String) input_sks.getSelectedItem(); 
          Ruangan =  input_ruangan.getText(); 
          time =  input_waktu.getText(); 
         }
@@ -686,7 +686,7 @@ public class App extends javax.swing.JFrame {
          KodeKLS = input_kodekelas.getText();
          NamaMataKuliah = input_namamk.getText();
          Hari = (String) input_hari.getSelectedItem();
-         sks =  (Integer) input_sks.getSelectedItem(); 
+         sks =  (String) input_sks.getSelectedItem(); 
          Ruangan =  input_ruangan.getText(); 
          time =  input_waktu.getText(); 
  
