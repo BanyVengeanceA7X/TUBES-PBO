@@ -67,32 +67,20 @@ public class App extends javax.swing.JFrame {
         Ruangan = input_ruangan.getText();
         time = input_waktu.getText();
     }
- public void loadDataedit() {
-        KodeMK = input_kodeMK1.getText();
-        KodeKLS = input_kodekelas1.getText();
-        NamaMataKuliah = input_namamk1.getText();
-        Hari = (String) input_hari1.getSelectedItem();
-        sks = (String) input_sks1.getSelectedItem();
-        Ruangan = input_ruangan1.getText();
-        time = input_waktu1.getText();
-    }
+    
     public void editdata() {
-        loadDataedit();
         try {
             Statement stat = (Statement) Koneksi.getKoneksi().createStatement();
-            String sql = "UPDATE 'jadwal' SET KodeMataKuliah = '" + KodeMK +"', 'KodeKelas' = '"+ KodeKLS +"', 'Ruangan' = '"+ Ruangan + "', NamaMataKuliah ='"+ NamaMataKuliah +
-                    "', 'SKS' = '"  + sks +
-                    "', 'Hari'= '"  + Hari +
-                    "','Waktu'= '"+ time +
-                    "' WHERE `jadwal`.`KodeMataKuliah` = '" 
-                    + KodeMK + "'";
+            String sql ="UPDATE jadwal SET KodeMataKuliah = '"+input_kodeMK1.getText()+"', KodeKelas = '"+input_kodekelas1.getText()+"', Ruangan = '"+input_ruangan1.getText()+"', NamaMataKuliah = '"+input_namamk1.getText()+
+            "', SKS = '"+input_sks1.getSelectedItem()+"', Hari = '"+input_hari1.getSelectedItem()+"', Waktu = '"+input_waktu1.getText()+"' WHERE KodeMataKuliah = '"+input_kodeMK1.getText()+"'";
+            
             Connection conn = (Connection) Koneksi.getKoneksi();
             PreparedStatement pst = conn.prepareStatement(sql);
-            pst.execute();
-
+            
             JOptionPane.showMessageDialog(null, "Edit Berhasil!");
+            pst.executeUpdate();
 
-        } catch (SQLException err) {
+        } catch (Exception err) {
             JOptionPane.showMessageDialog(null, " Ulangi inputan!", "Terjadi Kesalahan pada inputan!", 2);
         }
     }
@@ -165,9 +153,9 @@ public class App extends javax.swing.JFrame {
         input_ruangan = new javax.swing.JTextField();
         input_namamk = new javax.swing.JTextField();
         input_waktu = new javax.swing.JTextField();
-        input_hari = new javax.swing.JComboBox<String>();
+        input_hari = new javax.swing.JComboBox<>();
         jSeparator12 = new javax.swing.JSeparator();
-        input_sks = new javax.swing.JComboBox<String>();
+        input_sks = new javax.swing.JComboBox<>();
         cancel = new javax.swing.JButton();
         save = new javax.swing.JButton();
         background_create = new javax.swing.JLabel();
@@ -179,11 +167,6 @@ public class App extends javax.swing.JFrame {
         jSeparator13 = new javax.swing.JSeparator();
         jSeparator14 = new javax.swing.JSeparator();
         jSeparator15 = new javax.swing.JSeparator();
-        lbl_err6 = new javax.swing.JPanel();
-        lbl_err7 = new javax.swing.JPanel();
-        lbl_err8 = new javax.swing.JPanel();
-        lbl_err9 = new javax.swing.JPanel();
-        lbl_err10 = new javax.swing.JPanel();
         lbnama_mk1 = new javax.swing.JLabel();
         lbkode_matkul1 = new javax.swing.JLabel();
         lbkode_kelas1 = new javax.swing.JLabel();
@@ -202,9 +185,9 @@ public class App extends javax.swing.JFrame {
         input_ruangan1 = new javax.swing.JTextField();
         input_namamk1 = new javax.swing.JTextField();
         input_waktu1 = new javax.swing.JTextField();
-        input_hari1 = new javax.swing.JComboBox<String>();
+        input_hari1 = new javax.swing.JComboBox<>();
         jSeparator22 = new javax.swing.JSeparator();
-        input_sks1 = new javax.swing.JComboBox<String>();
+        input_sks1 = new javax.swing.JComboBox<>();
         cancel1 = new javax.swing.JButton();
         save1 = new javax.swing.JButton();
         background_jadwal = new javax.swing.JLabel();
@@ -521,14 +504,14 @@ public class App extends javax.swing.JFrame {
 
         input_hari.setBackground(new java.awt.Color(240, 240, 240));
         input_hari.setForeground(new java.awt.Color(240, 240, 240));
-        input_hari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Hari :", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
+        input_hari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Hari :", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
         input_hari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         laman_create.add(input_hari, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 500, 190, 30));
         laman_create.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 400, 190, 30));
 
         input_sks.setBackground(new java.awt.Color(240, 240, 240));
         input_sks.setForeground(new java.awt.Color(240, 240, 240));
-        input_sks.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
+        input_sks.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         input_sks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         laman_create.add(input_sks, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 440, 40, 30));
 
@@ -593,96 +576,11 @@ public class App extends javax.swing.JFrame {
         laman_jadwal.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 100, 52, 10));
 
         jSeparator13.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        laman_jadwal.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 50, 20, 46));
+        laman_jadwal.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 52, 20, 46));
         laman_jadwal.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 52, 10));
 
         jSeparator15.setOrientation(javax.swing.SwingConstants.VERTICAL);
         laman_jadwal.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 20, 46));
-
-        lbl_err6.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_err6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        lbl_err6.setOpaque(false);
-
-        javax.swing.GroupLayout lbl_err6Layout = new javax.swing.GroupLayout(lbl_err6);
-        lbl_err6.setLayout(lbl_err6Layout);
-        lbl_err6Layout.setHorizontalGroup(
-            lbl_err6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
-        );
-        lbl_err6Layout.setVerticalGroup(
-            lbl_err6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        laman_jadwal.add(lbl_err6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 220, 40));
-
-        lbl_err7.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_err7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        lbl_err7.setOpaque(false);
-
-        javax.swing.GroupLayout lbl_err7Layout = new javax.swing.GroupLayout(lbl_err7);
-        lbl_err7.setLayout(lbl_err7Layout);
-        lbl_err7Layout.setHorizontalGroup(
-            lbl_err7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-        lbl_err7Layout.setVerticalGroup(
-            lbl_err7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        laman_jadwal.add(lbl_err7, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 260, -1, 40));
-
-        lbl_err8.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_err8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        lbl_err8.setOpaque(false);
-
-        javax.swing.GroupLayout lbl_err8Layout = new javax.swing.GroupLayout(lbl_err8);
-        lbl_err8.setLayout(lbl_err8Layout);
-        lbl_err8Layout.setHorizontalGroup(
-            lbl_err8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
-        );
-        lbl_err8Layout.setVerticalGroup(
-            lbl_err8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        laman_jadwal.add(lbl_err8, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 330, 220, -1));
-
-        lbl_err9.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_err9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        lbl_err9.setOpaque(false);
-
-        javax.swing.GroupLayout lbl_err9Layout = new javax.swing.GroupLayout(lbl_err9);
-        lbl_err9.setLayout(lbl_err9Layout);
-        lbl_err9Layout.setHorizontalGroup(
-            lbl_err9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-        lbl_err9Layout.setVerticalGroup(
-            lbl_err9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        laman_jadwal.add(lbl_err9, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 400, -1, 40));
-
-        lbl_err10.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_err10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        lbl_err10.setOpaque(false);
-
-        javax.swing.GroupLayout lbl_err10Layout = new javax.swing.GroupLayout(lbl_err10);
-        lbl_err10.setLayout(lbl_err10Layout);
-        lbl_err10Layout.setHorizontalGroup(
-            lbl_err10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
-        );
-        lbl_err10Layout.setVerticalGroup(
-            lbl_err10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        laman_jadwal.add(lbl_err10, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 530, -1, -1));
 
         lbnama_mk1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbnama_mk1.setForeground(new java.awt.Color(255, 255, 255));
@@ -690,7 +588,6 @@ public class App extends javax.swing.JFrame {
         laman_jadwal.add(lbnama_mk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 400, -1, -1));
 
         lbkode_matkul1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lbkode_matkul1.setForeground(new java.awt.Color(0, 0, 0));
         lbkode_matkul1.setText("Kode Matakuliah baru       :");
         laman_jadwal.add(lbkode_matkul1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 240, 40));
 
@@ -726,7 +623,6 @@ public class App extends javax.swing.JFrame {
         laman_jadwal.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 290, 190, 20));
 
         input_kodeMK1.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
-        input_kodeMK1.setForeground(new java.awt.Color(0, 0, 0));
         input_kodeMK1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         input_kodeMK1.setBorder(null);
         input_kodeMK1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -737,7 +633,6 @@ public class App extends javax.swing.JFrame {
         laman_jadwal.add(input_kodeMK1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 190, 190, -1));
 
         input_kodekelas1.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
-        input_kodekelas1.setForeground(new java.awt.Color(0, 0, 0));
         input_kodekelas1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         input_kodekelas1.setText("R");
         input_kodekelas1.setBorder(null);
@@ -749,19 +644,16 @@ public class App extends javax.swing.JFrame {
         laman_jadwal.add(input_kodekelas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 260, 190, -1));
 
         input_ruangan1.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
-        input_ruangan1.setForeground(new java.awt.Color(0, 0, 0));
         input_ruangan1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         input_ruangan1.setBorder(null);
         laman_jadwal.add(input_ruangan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 330, 190, -1));
 
         input_namamk1.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
-        input_namamk1.setForeground(new java.awt.Color(0, 0, 0));
         input_namamk1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         input_namamk1.setBorder(null);
         laman_jadwal.add(input_namamk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 400, 190, -1));
 
         input_waktu1.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
-        input_waktu1.setForeground(new java.awt.Color(0, 0, 0));
         input_waktu1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         input_waktu1.setText("00:00:00");
         input_waktu1.setBorder(null);
@@ -773,15 +665,13 @@ public class App extends javax.swing.JFrame {
         laman_jadwal.add(input_waktu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 600, 190, -1));
 
         input_hari1.setBackground(new java.awt.Color(240, 240, 240));
-        input_hari1.setForeground(new java.awt.Color(0, 0, 0));
-        input_hari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Hari :", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
+        input_hari1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Hari :", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
         input_hari1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         laman_jadwal.add(input_hari1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 530, 190, 30));
         laman_jadwal.add(jSeparator22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 430, 190, 30));
 
         input_sks1.setBackground(new java.awt.Color(240, 240, 240));
-        input_sks1.setForeground(new java.awt.Color(0, 0, 0));
-        input_sks1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
+        input_sks1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         input_sks1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         input_sks1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -923,6 +813,7 @@ public class App extends javax.swing.JFrame {
         lb_navbar.setForeground(Color.white);
         scrool_jadwal.getViewport().setOpaque(false);
         jadwal.setShowGrid(false);
+        
         ((DefaultTableCellRenderer) jadwal.getDefaultRenderer(Object.class)).setOpaque(false);
         this.setLocationRelativeTo(null);
         model = new DefaultTableModel();
@@ -1018,20 +909,19 @@ public class App extends javax.swing.JFrame {
     private void jadwalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwalMouseClicked
         int baris = jadwal.rowAtPoint(evt.getPoint());
         String KodeMataKuliah = jadwal.getValueAt(baris, 0).toString();
-        input_kodeMK1.setText(KodeMK);//Ruangan
+        input_kodeMK1.setText(KodeMataKuliah);//Ruangan
         String KodeKelas = jadwal.getValueAt(baris, 1).toString();
-        input_kodekelas1.setText(KodeKLS);
-        String ruangan;
-        Ruangan = jadwal.getValueAt(baris, 2).toString();
-        input_ruangan1.setText(Ruangan);
+        input_kodekelas1.setText(KodeKelas);
+        String ruangan= jadwal.getValueAt(baris, 2).toString();
+        input_ruangan1.setText(ruangan);
         String NamaMataKuliah = jadwal.getValueAt(baris, 3).toString();
         input_namamk1.setText(NamaMataKuliah);
         String SKS = jadwal.getValueAt(baris, 4).toString();
-        input_sks1.setSelectedItem(sks);
+        input_sks1.setSelectedItem(SKS);
         String Hari = jadwal.getValueAt(baris, 5).toString();
         input_hari1.setSelectedItem(Hari);
         String Waktu = jadwal.getValueAt(baris, 6).toString();
-        input_waktu1.setText(time);
+        input_waktu1.setText(Waktu);
 
     }//GEN-LAST:event_jadwalMouseClicked
 
@@ -1141,15 +1031,10 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JLabel lbkode_matkul;
     private javax.swing.JLabel lbkode_matkul1;
     private javax.swing.JPanel lbl_err1;
-    private javax.swing.JPanel lbl_err10;
     private javax.swing.JPanel lbl_err2;
     private javax.swing.JPanel lbl_err3;
     private javax.swing.JPanel lbl_err4;
     private javax.swing.JPanel lbl_err5;
-    private javax.swing.JPanel lbl_err6;
-    private javax.swing.JPanel lbl_err7;
-    private javax.swing.JPanel lbl_err8;
-    private javax.swing.JPanel lbl_err9;
     private javax.swing.JLabel lbnama_mk;
     private javax.swing.JLabel lbnama_mk1;
     private javax.swing.JLabel lbruangan;
