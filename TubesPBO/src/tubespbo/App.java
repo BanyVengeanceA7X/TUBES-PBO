@@ -100,6 +100,17 @@ public class App extends javax.swing.JFrame {
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, " Ulangi inputan!", "Terjadi Kesalahan pada inputan!", 2);
         }
+        clear();
+    }
+    
+    public void clear(){
+        input_kodemk.setText("");
+        input_kodekelas.setText("R");
+        input_namamk.setText("");
+        input_sks.setSelectedItem("1");
+        input_ruangan.setText("");
+        input_hari.setSelectedItem("Pilih Hari :");
+        input_waktu.setText("00:00:00");
     }
 
     @SuppressWarnings("unchecked")
@@ -306,6 +317,7 @@ public class App extends javax.swing.JFrame {
 
         laman_firstscreen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/backgorund.png"))); // NOI18N
         background.setText("jLabel1");
         background.setMaximumSize(new java.awt.Dimension(6038, 4000));
         background.setMinimumSize(new java.awt.Dimension(6038, 4000));
@@ -429,6 +441,11 @@ public class App extends javax.swing.JFrame {
         cancel.setForeground(new java.awt.Color(255, 255, 255));
         cancel.setText("CANCEL");
         cancel.setBorder(null);
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
         laman_create.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 640, 90, 30));
 
         save.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -647,7 +664,7 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_minimizeMouseClicked
 
     private void maximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizeMouseClicked
-        // TODO add your handling code here:
+        new App().setVisible(true);
     }//GEN-LAST:event_maximizeMouseClicked
 
     private void lb_navbarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_navbarMouseEntered
@@ -833,6 +850,10 @@ public class App extends javax.swing.JFrame {
     private void input_sks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_sks1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_input_sks1ActionPerformed
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+        clear();
+    }//GEN-LAST:event_cancelMouseClicked
 
     /**
      * @param args the command line arguments
