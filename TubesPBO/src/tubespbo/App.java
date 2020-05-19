@@ -130,11 +130,6 @@ public class App extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        lbl_err1 = new javax.swing.JPanel();
-        lbl_err2 = new javax.swing.JPanel();
-        lbl_err3 = new javax.swing.JPanel();
-        lbl_err4 = new javax.swing.JPanel();
-        lbl_err5 = new javax.swing.JPanel();
         lbnama_mk = new javax.swing.JLabel();
         lbkode_matkul = new javax.swing.JLabel();
         lbkode_kelas = new javax.swing.JLabel();
@@ -167,8 +162,8 @@ public class App extends javax.swing.JFrame {
         jSeparator13 = new javax.swing.JSeparator();
         jSeparator14 = new javax.swing.JSeparator();
         jSeparator15 = new javax.swing.JSeparator();
+        lbkode_matkul2 = new javax.swing.JLabel();
         lbnama_mk1 = new javax.swing.JLabel();
-        lbkode_matkul1 = new javax.swing.JLabel();
         lbkode_kelas1 = new javax.swing.JLabel();
         lb_sks1 = new javax.swing.JLabel();
         lb_hari1 = new javax.swing.JLabel();
@@ -334,91 +329,6 @@ public class App extends javax.swing.JFrame {
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
         laman_create.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 20, 46));
 
-        lbl_err1.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_err1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        lbl_err1.setOpaque(false);
-
-        javax.swing.GroupLayout lbl_err1Layout = new javax.swing.GroupLayout(lbl_err1);
-        lbl_err1.setLayout(lbl_err1Layout);
-        lbl_err1Layout.setHorizontalGroup(
-            lbl_err1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
-        );
-        lbl_err1Layout.setVerticalGroup(
-            lbl_err1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        laman_create.add(lbl_err1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 160, 220, 40));
-
-        lbl_err2.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_err2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        lbl_err2.setOpaque(false);
-
-        javax.swing.GroupLayout lbl_err2Layout = new javax.swing.GroupLayout(lbl_err2);
-        lbl_err2.setLayout(lbl_err2Layout);
-        lbl_err2Layout.setHorizontalGroup(
-            lbl_err2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-        lbl_err2Layout.setVerticalGroup(
-            lbl_err2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        laman_create.add(lbl_err2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 230, -1, 40));
-
-        lbl_err3.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_err3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        lbl_err3.setOpaque(false);
-
-        javax.swing.GroupLayout lbl_err3Layout = new javax.swing.GroupLayout(lbl_err3);
-        lbl_err3.setLayout(lbl_err3Layout);
-        lbl_err3Layout.setHorizontalGroup(
-            lbl_err3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
-        );
-        lbl_err3Layout.setVerticalGroup(
-            lbl_err3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        laman_create.add(lbl_err3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 300, 220, -1));
-
-        lbl_err4.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_err4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        lbl_err4.setOpaque(false);
-
-        javax.swing.GroupLayout lbl_err4Layout = new javax.swing.GroupLayout(lbl_err4);
-        lbl_err4.setLayout(lbl_err4Layout);
-        lbl_err4Layout.setHorizontalGroup(
-            lbl_err4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-        lbl_err4Layout.setVerticalGroup(
-            lbl_err4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        laman_create.add(lbl_err4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 370, -1, 40));
-
-        lbl_err5.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_err5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        lbl_err5.setOpaque(false);
-
-        javax.swing.GroupLayout lbl_err5Layout = new javax.swing.GroupLayout(lbl_err5);
-        lbl_err5.setLayout(lbl_err5Layout);
-        lbl_err5Layout.setHorizontalGroup(
-            lbl_err5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
-        );
-        lbl_err5Layout.setVerticalGroup(
-            lbl_err5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        laman_create.add(lbl_err5, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 500, -1, -1));
-
         lbnama_mk.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbnama_mk.setForeground(new java.awt.Color(255, 255, 255));
         lbnama_mk.setText("Nama Matakuliah :");
@@ -582,14 +492,14 @@ public class App extends javax.swing.JFrame {
         jSeparator15.setOrientation(javax.swing.SwingConstants.VERTICAL);
         laman_jadwal.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 20, 46));
 
+        lbkode_matkul2.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbkode_matkul2.setText("Kode Matakuliah   :");
+        laman_jadwal.add(lbkode_matkul2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 190, -1, -1));
+
         lbnama_mk1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbnama_mk1.setForeground(new java.awt.Color(255, 255, 255));
         lbnama_mk1.setText("Nama Matakuliah :");
         laman_jadwal.add(lbnama_mk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 400, -1, -1));
-
-        lbkode_matkul1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lbkode_matkul1.setText("Kode Matakuliah baru       :");
-        laman_jadwal.add(lbkode_matkul1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 240, 40));
 
         lbkode_kelas1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lbkode_kelas1.setForeground(new java.awt.Color(255, 255, 255));
@@ -684,7 +594,7 @@ public class App extends javax.swing.JFrame {
         cancel1.setForeground(new java.awt.Color(255, 255, 255));
         cancel1.setText("CANCEL");
         cancel1.setBorder(null);
-        laman_jadwal.add(cancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 670, 90, 30));
+        laman_jadwal.add(cancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 650, 90, 30));
 
         save1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         save1.setForeground(new java.awt.Color(255, 255, 255));
@@ -695,7 +605,7 @@ public class App extends javax.swing.JFrame {
                 save1ActionPerformed(evt);
             }
         });
-        laman_jadwal.add(save1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 670, 80, 30));
+        laman_jadwal.add(save1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 650, 80, 30));
 
         background_jadwal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bg_jadwal.png"))); // NOI18N
         background_jadwal.setText("jLabel1");
@@ -752,13 +662,6 @@ public class App extends javax.swing.JFrame {
         sp2.setVisible(false);
         jLabel2.setVisible(false);
 
-        //LABEL ERROR KETIKA DATA KOSONG
-        lbl_err1.setVisible(false); //Label Kode matakuliah
-        lbl_err2.setVisible(false); //Label Ruangan
-        lbl_err3.setVisible(false); //Label Nama matakuliah
-        lbl_err4.setVisible(false); //Label SKS
-        lbl_err5.setVisible(false); //Label Hari
-
         laman_firstscreen.setVisible(false);
         laman_jadwal.setVisible(false);
         wallpaper_jadwal.setVisible(false);
@@ -811,6 +714,8 @@ public class App extends javax.swing.JFrame {
         lb_jadwal.setForeground(Color.white);
         lb_create.setForeground(Color.white);
         lb_navbar.setForeground(Color.white);
+        save1.setBackground(new Color(0, 0, 0, 1));
+        cancel1.setBackground(new Color(0, 0, 0, 1));
         scrool_jadwal.getViewport().setOpaque(false);
         jadwal.setShowGrid(false);
         
@@ -1029,12 +934,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JLabel lbkode_kelas;
     private javax.swing.JLabel lbkode_kelas1;
     private javax.swing.JLabel lbkode_matkul;
-    private javax.swing.JLabel lbkode_matkul1;
-    private javax.swing.JPanel lbl_err1;
-    private javax.swing.JPanel lbl_err2;
-    private javax.swing.JPanel lbl_err3;
-    private javax.swing.JPanel lbl_err4;
-    private javax.swing.JPanel lbl_err5;
+    private javax.swing.JLabel lbkode_matkul2;
     private javax.swing.JLabel lbnama_mk;
     private javax.swing.JLabel lbnama_mk1;
     private javax.swing.JLabel lbruangan;
