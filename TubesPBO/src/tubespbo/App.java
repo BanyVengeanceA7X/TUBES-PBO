@@ -15,77 +15,105 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-
 public class App extends javax.swing.JFrame {
+
     AnimationClass animasi_slide = new AnimationClass();
     int mouseX;
     int mouseY;
-    
+
     public App() {
         initComponents();
         sp1.setVisible(false);
         sp2.setVisible(false);
-          
+
     }
     //ini ban.. untuk masukin ke databasenya
     String KodeMK, KodeKLS, Ruangan, NamaMataKuliah, Hari, time, sks;
-   
-     
+
     private DefaultTableModel model;
-      
-    public void getReminder(){
+
+    public void getReminder() {
         model.getDataVector();
         model.fireTableDataChanged();
 
         this.setLocationRelativeTo(null);
-        try{
+        try {
             com.mysql.jdbc.Statement stat = (com.mysql.jdbc.Statement) Koneksi.getKoneksi().createStatement();
             String sql = "select * from jadwal";
             ResultSet res = stat.executeQuery(sql);
-            while(res.next()){
+            while (res.next()) {
                 Object[] obj = new Object[7];
-                obj[0]=res.getString("KodeMataKuliah");
-                obj[1]=res.getString("KodeKelas");
-                obj[2]=res.getString("Ruangan");
-                obj[3]=res.getString("NamaMataKuliah");
-                obj[4]=res.getString("SKS");
-                obj[5]=res.getString("Hari");
-                obj[6]=res.getString("Waktu");
+                obj[0] = res.getString("KodeMataKuliah");
+                obj[1] = res.getString("KodeKelas");
+                obj[2] = res.getString("Ruangan");
+                obj[3] = res.getString("NamaMataKuliah");
+                obj[4] = res.getString("SKS");
+                obj[5] = res.getString("Hari");
+                obj[6] = res.getString("Waktu");
 
                 model.addRow(obj);
             }
-        }catch(SQLException err){
+        } catch (SQLException err) {
 
         }
-   }
-     
-     public void loadData(){
-         KodeMK = input_kodemk.getText();
-         KodeKLS = input_kodekelas.getText();
-         NamaMataKuliah = input_namamk.getText();
-         Hari = (String) input_hari.getSelectedItem();
-         sks =  (String) input_sks.getSelectedItem(); 
-         Ruangan =  input_ruangan.getText(); 
-         time =  input_waktu.getText(); 
-        }
-      
-     public void savedata(){
-         loadData();
-         try{
-             Statement stat = (Statement) Koneksi.getKoneksi().createStatement();
-             String sql = "Insert into Jadwal (KodeMataKuliah,KodeKelas,Ruangan,NamaMataKuliah,SKS,Hari,Waktu)"
-                    +"values ('"+KodeMK +"','"+ KodeKLS+"','"+Ruangan+"','"+NamaMataKuliah+"','"+ sks+"','"+ Hari+"','"+ time+"')";
-            Connection conn=(Connection)Koneksi.getKoneksi();
-            PreparedStatement pst=conn.prepareStatement(sql);
+    }
+
+    public void loadData() {
+        KodeMK = input_kodemk.getText();
+        KodeKLS = input_kodekelas.getText();
+        NamaMataKuliah = input_namamk.getText();
+        Hari = (String) input_hari.getSelectedItem();
+        sks = (String) input_sks.getSelectedItem();
+        Ruangan = input_ruangan.getText();
+        time = input_waktu.getText();
+    }
+ public void loadDataedit() {
+        KodeMK = input_kodeMK1.getText();
+        KodeKLS = input_kodekelas1.getText();
+        NamaMataKuliah = input_namamk1.getText();
+        Hari = (String) input_hari1.getSelectedItem();
+        sks = (String) input_sks1.getSelectedItem();
+        Ruangan = input_ruangan1.getText();
+        time = input_waktu1.getText();
+    }
+    public void editdata() {
+        loadDataedit();
+        try {
+            Statement stat = (Statement) Koneksi.getKoneksi().createStatement();
+            String sql = "UPDATE 'jadwal' SET KodeMataKuliah = '" + KodeMK +"', 'KodeKelas' = '"+ KodeKLS +"', 'Ruangan' = '"+ Ruangan + "', NamaMataKuliah ='"+ NamaMataKuliah +
+                    "', 'SKS' = '"  + sks +
+                    "', 'Hari'= '"  + Hari +
+                    "','Waktu'= '"+ time +
+                    "' WHERE `jadwal`.`KodeMataKuliah` = '" 
+                    + KodeMK + "'";
+            Connection conn = (Connection) Koneksi.getKoneksi();
+            PreparedStatement pst = conn.prepareStatement(sql);
             pst.execute();
-             
-             JOptionPane.showMessageDialog(null, "Input Berhasil!");
-             
-         }catch(SQLException err){
-             JOptionPane.showMessageDialog(null, " Ulangi inputan!","Terjadi Kesalahan pada inputan!", 2);
-         }
-     }
-     
+
+            JOptionPane.showMessageDialog(null, "Edit Berhasil!");
+
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, " Ulangi inputan!", "Terjadi Kesalahan pada inputan!", 2);
+        }
+    }
+
+    public void savedata() {
+        loadData();
+        try {
+            Statement stat = (Statement) Koneksi.getKoneksi().createStatement();
+            String sql = "Insert into Jadwal (KodeMataKuliah,KodeKelas,Ruangan,NamaMataKuliah,SKS,Hari,Waktu)"
+                    + "values ('" + KodeMK + "','" + KodeKLS + "','" + Ruangan + "','" + NamaMataKuliah + "','" + sks + "','" + Hari + "','" + time + "')";
+            Connection conn = (Connection) Koneksi.getKoneksi();
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.execute();
+
+            JOptionPane.showMessageDialog(null, "Input Berhasil!");
+
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, " Ulangi inputan!", "Terjadi Kesalahan pada inputan!", 2);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -94,6 +122,7 @@ public class App extends javax.swing.JFrame {
         exit = new javax.swing.JLabel();
         minimize = new javax.swing.JLabel();
         maximize = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         menu = new javax.swing.JScrollPane();
         panel_menu = new javax.swing.JPanel();
         lb_navbar = new javax.swing.JLabel();
@@ -136,15 +165,48 @@ public class App extends javax.swing.JFrame {
         input_ruangan = new javax.swing.JTextField();
         input_namamk = new javax.swing.JTextField();
         input_waktu = new javax.swing.JTextField();
-        input_hari = new javax.swing.JComboBox<>();
+        input_hari = new javax.swing.JComboBox<String>();
         jSeparator12 = new javax.swing.JSeparator();
-        input_sks = new javax.swing.JComboBox<>();
+        input_sks = new javax.swing.JComboBox<String>();
         cancel = new javax.swing.JButton();
         save = new javax.swing.JButton();
         background_create = new javax.swing.JLabel();
         laman_jadwal = new javax.swing.JPanel();
         scrool_jadwal = new javax.swing.JScrollPane();
         jadwal = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator13 = new javax.swing.JSeparator();
+        jSeparator14 = new javax.swing.JSeparator();
+        jSeparator15 = new javax.swing.JSeparator();
+        lbl_err6 = new javax.swing.JPanel();
+        lbl_err7 = new javax.swing.JPanel();
+        lbl_err8 = new javax.swing.JPanel();
+        lbl_err9 = new javax.swing.JPanel();
+        lbl_err10 = new javax.swing.JPanel();
+        lbnama_mk1 = new javax.swing.JLabel();
+        lbkode_matkul1 = new javax.swing.JLabel();
+        lbkode_kelas1 = new javax.swing.JLabel();
+        lb_sks1 = new javax.swing.JLabel();
+        lb_hari1 = new javax.swing.JLabel();
+        lb_waktu1 = new javax.swing.JLabel();
+        lbruangan1 = new javax.swing.JLabel();
+        jSeparator16 = new javax.swing.JSeparator();
+        jSeparator17 = new javax.swing.JSeparator();
+        jSeparator18 = new javax.swing.JSeparator();
+        jSeparator19 = new javax.swing.JSeparator();
+        jSeparator20 = new javax.swing.JSeparator();
+        jSeparator21 = new javax.swing.JSeparator();
+        input_kodeMK1 = new javax.swing.JTextField();
+        input_kodekelas1 = new javax.swing.JTextField();
+        input_ruangan1 = new javax.swing.JTextField();
+        input_namamk1 = new javax.swing.JTextField();
+        input_waktu1 = new javax.swing.JTextField();
+        input_hari1 = new javax.swing.JComboBox<String>();
+        jSeparator22 = new javax.swing.JSeparator();
+        input_sks1 = new javax.swing.JComboBox<String>();
+        cancel1 = new javax.swing.JButton();
+        save1 = new javax.swing.JButton();
         background_jadwal = new javax.swing.JLabel();
         wallpaper_create = new javax.swing.JLabel();
         wallpaper_jadwal = new javax.swing.JLabel();
@@ -188,6 +250,10 @@ public class App extends javax.swing.JFrame {
             }
         });
         panel_dasar.add(maximize, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 7, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Maiandra GD", 3, 36)); // NOI18N
+        jLabel2.setText("welcome to class reminder");
+        panel_dasar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 510, 210));
 
         menu.setBorder(null);
 
@@ -455,14 +521,14 @@ public class App extends javax.swing.JFrame {
 
         input_hari.setBackground(new java.awt.Color(240, 240, 240));
         input_hari.setForeground(new java.awt.Color(240, 240, 240));
-        input_hari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Hari :", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
+        input_hari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Hari :", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
         input_hari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         laman_create.add(input_hari, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 500, 190, 30));
         laman_create.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 400, 190, 30));
 
         input_sks.setBackground(new java.awt.Color(240, 240, 240));
         input_sks.setForeground(new java.awt.Color(240, 240, 240));
-        input_sks.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        input_sks.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
         input_sks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         laman_create.add(input_sks, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 440, 40, 30));
 
@@ -511,9 +577,235 @@ public class App extends javax.swing.JFrame {
         ));
         jadwal.setOpaque(false);
         jadwal.setSelectionForeground(new java.awt.Color(255, 153, 0));
+        jadwal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jadwalMouseClicked(evt);
+            }
+        });
         scrool_jadwal.setViewportView(jadwal);
 
-        laman_jadwal.add(scrool_jadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 640, 530));
+        laman_jadwal.add(scrool_jadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 640, 530));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Edit Jadwal");
+        laman_jadwal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 50, -1, -1));
+        laman_jadwal.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 100, 52, 10));
+
+        jSeparator13.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        laman_jadwal.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 50, 20, 46));
+        laman_jadwal.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 52, 10));
+
+        jSeparator15.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        laman_jadwal.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 20, 46));
+
+        lbl_err6.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_err6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        lbl_err6.setOpaque(false);
+
+        javax.swing.GroupLayout lbl_err6Layout = new javax.swing.GroupLayout(lbl_err6);
+        lbl_err6.setLayout(lbl_err6Layout);
+        lbl_err6Layout.setHorizontalGroup(
+            lbl_err6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 216, Short.MAX_VALUE)
+        );
+        lbl_err6Layout.setVerticalGroup(
+            lbl_err6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        laman_jadwal.add(lbl_err6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 220, 40));
+
+        lbl_err7.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_err7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        lbl_err7.setOpaque(false);
+
+        javax.swing.GroupLayout lbl_err7Layout = new javax.swing.GroupLayout(lbl_err7);
+        lbl_err7.setLayout(lbl_err7Layout);
+        lbl_err7Layout.setHorizontalGroup(
+            lbl_err7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        lbl_err7Layout.setVerticalGroup(
+            lbl_err7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        laman_jadwal.add(lbl_err7, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 260, -1, 40));
+
+        lbl_err8.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_err8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        lbl_err8.setOpaque(false);
+
+        javax.swing.GroupLayout lbl_err8Layout = new javax.swing.GroupLayout(lbl_err8);
+        lbl_err8.setLayout(lbl_err8Layout);
+        lbl_err8Layout.setHorizontalGroup(
+            lbl_err8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 216, Short.MAX_VALUE)
+        );
+        lbl_err8Layout.setVerticalGroup(
+            lbl_err8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        laman_jadwal.add(lbl_err8, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 330, 220, -1));
+
+        lbl_err9.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_err9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        lbl_err9.setOpaque(false);
+
+        javax.swing.GroupLayout lbl_err9Layout = new javax.swing.GroupLayout(lbl_err9);
+        lbl_err9.setLayout(lbl_err9Layout);
+        lbl_err9Layout.setHorizontalGroup(
+            lbl_err9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        lbl_err9Layout.setVerticalGroup(
+            lbl_err9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        laman_jadwal.add(lbl_err9, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 400, -1, 40));
+
+        lbl_err10.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_err10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        lbl_err10.setOpaque(false);
+
+        javax.swing.GroupLayout lbl_err10Layout = new javax.swing.GroupLayout(lbl_err10);
+        lbl_err10.setLayout(lbl_err10Layout);
+        lbl_err10Layout.setHorizontalGroup(
+            lbl_err10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 216, Short.MAX_VALUE)
+        );
+        lbl_err10Layout.setVerticalGroup(
+            lbl_err10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 36, Short.MAX_VALUE)
+        );
+
+        laman_jadwal.add(lbl_err10, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 530, -1, -1));
+
+        lbnama_mk1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbnama_mk1.setForeground(new java.awt.Color(255, 255, 255));
+        lbnama_mk1.setText("Nama Matakuliah :");
+        laman_jadwal.add(lbnama_mk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 400, -1, -1));
+
+        lbkode_matkul1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbkode_matkul1.setForeground(new java.awt.Color(0, 0, 0));
+        lbkode_matkul1.setText("Kode Matakuliah baru       :");
+        laman_jadwal.add(lbkode_matkul1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 240, 40));
+
+        lbkode_kelas1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbkode_kelas1.setForeground(new java.awt.Color(255, 255, 255));
+        lbkode_kelas1.setText("Kode Kelas           :");
+        laman_jadwal.add(lbkode_kelas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 260, -1, -1));
+
+        lb_sks1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lb_sks1.setForeground(new java.awt.Color(255, 255, 255));
+        lb_sks1.setText("SKS                     :");
+        laman_jadwal.add(lb_sks1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 470, -1, -1));
+
+        lb_hari1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lb_hari1.setForeground(new java.awt.Color(255, 255, 255));
+        lb_hari1.setText("Hari                      :");
+        laman_jadwal.add(lb_hari1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 530, -1, -1));
+
+        lb_waktu1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lb_waktu1.setForeground(new java.awt.Color(255, 255, 255));
+        lb_waktu1.setText("Waktu                  :");
+        laman_jadwal.add(lb_waktu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, -1, -1));
+
+        lbruangan1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lbruangan1.setForeground(new java.awt.Color(255, 255, 255));
+        lbruangan1.setText("Ruangan              :");
+        laman_jadwal.add(lbruangan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 330, -1, -1));
+        laman_jadwal.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 360, 190, 20));
+        laman_jadwal.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 220, 190, 20));
+        laman_jadwal.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 500, 40, 20));
+        laman_jadwal.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 560, 190, 20));
+        laman_jadwal.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 630, 190, 20));
+        laman_jadwal.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 290, 190, 20));
+
+        input_kodeMK1.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
+        input_kodeMK1.setForeground(new java.awt.Color(0, 0, 0));
+        input_kodeMK1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        input_kodeMK1.setBorder(null);
+        input_kodeMK1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                input_kodeMK1KeyPressed(evt);
+            }
+        });
+        laman_jadwal.add(input_kodeMK1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 190, 190, -1));
+
+        input_kodekelas1.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
+        input_kodekelas1.setForeground(new java.awt.Color(0, 0, 0));
+        input_kodekelas1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        input_kodekelas1.setText("R");
+        input_kodekelas1.setBorder(null);
+        input_kodekelas1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                input_kodekelas1KeyPressed(evt);
+            }
+        });
+        laman_jadwal.add(input_kodekelas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 260, 190, -1));
+
+        input_ruangan1.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
+        input_ruangan1.setForeground(new java.awt.Color(0, 0, 0));
+        input_ruangan1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        input_ruangan1.setBorder(null);
+        laman_jadwal.add(input_ruangan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 330, 190, -1));
+
+        input_namamk1.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
+        input_namamk1.setForeground(new java.awt.Color(0, 0, 0));
+        input_namamk1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        input_namamk1.setBorder(null);
+        laman_jadwal.add(input_namamk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 400, 190, -1));
+
+        input_waktu1.setFont(new java.awt.Font("SansSerif", 0, 17)); // NOI18N
+        input_waktu1.setForeground(new java.awt.Color(0, 0, 0));
+        input_waktu1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        input_waktu1.setText("00:00:00");
+        input_waktu1.setBorder(null);
+        input_waktu1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                input_waktu1KeyPressed(evt);
+            }
+        });
+        laman_jadwal.add(input_waktu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 600, 190, -1));
+
+        input_hari1.setBackground(new java.awt.Color(240, 240, 240));
+        input_hari1.setForeground(new java.awt.Color(0, 0, 0));
+        input_hari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Hari :", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
+        input_hari1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        laman_jadwal.add(input_hari1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 530, 190, 30));
+        laman_jadwal.add(jSeparator22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 430, 190, 30));
+
+        input_sks1.setBackground(new java.awt.Color(240, 240, 240));
+        input_sks1.setForeground(new java.awt.Color(0, 0, 0));
+        input_sks1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
+        input_sks1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        input_sks1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                input_sks1ActionPerformed(evt);
+            }
+        });
+        laman_jadwal.add(input_sks1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 470, 40, 30));
+
+        cancel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        cancel1.setForeground(new java.awt.Color(255, 255, 255));
+        cancel1.setText("CANCEL");
+        cancel1.setBorder(null);
+        laman_jadwal.add(cancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 670, 90, 30));
+
+        save1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        save1.setForeground(new java.awt.Color(255, 255, 255));
+        save1.setText("SAVE");
+        save1.setBorder(null);
+        save1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                save1ActionPerformed(evt);
+            }
+        });
+        laman_jadwal.add(save1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 670, 80, 30));
 
         background_jadwal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bg_jadwal.png"))); // NOI18N
         background_jadwal.setText("jLabel1");
@@ -559,7 +851,7 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_maximizeMouseClicked
 
     private void lb_navbarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_navbarMouseEntered
-        animasi_slide.jTextAreaYUp(-160, -120, 30, 3, menu );
+        animasi_slide.jTextAreaYUp(-160, -120, 30, 3, menu);
         animasi_slide.jTextAreaYUp(-120, -160, 15, 10, menu);
     }//GEN-LAST:event_lb_navbarMouseEntered
 
@@ -568,7 +860,8 @@ public class App extends javax.swing.JFrame {
         wallpaper_first.setVisible(false);
         sp1.setVisible(true);
         sp2.setVisible(false);
-        
+        jLabel2.setVisible(false);
+
         //LABEL ERROR KETIKA DATA KOSONG
         lbl_err1.setVisible(false); //Label Kode matakuliah
         lbl_err2.setVisible(false); //Label Ruangan
@@ -582,22 +875,22 @@ public class App extends javax.swing.JFrame {
         wallpaper_create.setVisible(true);
         background_create.setVisible(true);
         laman_create.setVisible(true);
-        panel_menu.setBackground(new Color(0,0,0,125));
-        panel_create.setBackground(new Color(0,0,0,125));
-        show_jadwal.setBackground(new Color(0,0,0,125));
+        panel_menu.setBackground(new Color(0, 0, 0, 125));
+        panel_create.setBackground(new Color(0, 0, 0, 125));
+        show_jadwal.setBackground(new Color(0, 0, 0, 125));
         lb_jadwal.setForeground(Color.white);
         lb_create.setForeground(Color.white);
         lb_navbar.setForeground(Color.white);
-        
-        input_kodemk.setBackground(new Color(0,0,0,5));
-        input_kodekelas.setBackground(new Color(0,0,0,5));
-        input_namamk.setBackground(new Color(0,0,0,5));
-        input_hari.setBackground(new Color(0,0,0,0));
-        input_sks.setBackground(new Color(0,0,0,0));
-        input_ruangan.setBackground(new Color(0,0,0,5));
-        input_waktu.setBackground(new Color(0,0,0,5));
-        save.setBackground(new Color(0,0,0,1));
-        cancel.setBackground(new Color(0,0,0,1));
+
+        input_kodemk.setBackground(new Color(0, 0, 0, 5));
+        input_kodekelas.setBackground(new Color(0, 0, 0, 5));
+        input_namamk.setBackground(new Color(0, 0, 0, 5));
+        input_hari.setBackground(new Color(0, 0, 0, 0));
+        input_sks.setBackground(new Color(0, 0, 0, 0));
+        input_ruangan.setBackground(new Color(0, 0, 0, 5));
+        input_waktu.setBackground(new Color(0, 0, 0, 5));
+        save.setBackground(new Color(0, 0, 0, 1));
+        cancel.setBackground(new Color(0, 0, 0, 1));
     }//GEN-LAST:event_lb_createMouseClicked
 
     private void lb_createMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_createMouseEntered
@@ -612,6 +905,7 @@ public class App extends javax.swing.JFrame {
         animasi_slide.jTextAreaYUp(-120, -160, 15, 10, menu);
         sp1.setVisible(false);
         sp2.setVisible(true);
+        jLabel2.setVisible(false);
 
         laman_firstscreen.setVisible(false);
         laman_create.setVisible(false);
@@ -621,18 +915,18 @@ public class App extends javax.swing.JFrame {
         background_create.setVisible(false);
         wallpaper_jadwal.setVisible(true);
 
-        panel_menu.setBackground(new Color(0,0,0,125));
-        panel_create.setBackground(new Color(0,0,0,125));
-        show_jadwal.setBackground(new Color(0,0,0,125));
+        panel_menu.setBackground(new Color(0, 0, 0, 125));
+        panel_create.setBackground(new Color(0, 0, 0, 125));
+        show_jadwal.setBackground(new Color(0, 0, 0, 125));
         lb_jadwal.setForeground(Color.white);
         lb_create.setForeground(Color.white);
         lb_navbar.setForeground(Color.white);
         scrool_jadwal.getViewport().setOpaque(false);
         jadwal.setShowGrid(false);
-        ((DefaultTableCellRenderer)jadwal.getDefaultRenderer(Object.class)).setOpaque(false);
+        ((DefaultTableCellRenderer) jadwal.getDefaultRenderer(Object.class)).setOpaque(false);
         this.setLocationRelativeTo(null);
-            model = new DefaultTableModel();
-       jadwal.setModel(model);
+        model = new DefaultTableModel();
+        jadwal.setModel(model);
         model.addColumn("Kode Mata Kuliah");
         model.addColumn("Kode Kelas");
         model.addColumn("Ruangan");
@@ -640,7 +934,7 @@ public class App extends javax.swing.JFrame {
         model.addColumn("SKS");
         model.addColumn("Hari");
         model.addColumn("Waktu");
-        
+
         getReminder();
     }//GEN-LAST:event_lb_jadwalMouseClicked
 
@@ -655,21 +949,21 @@ public class App extends javax.swing.JFrame {
     private void panel_dasarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_dasarMouseDragged
         int kordinatX = evt.getXOnScreen();
         int kordinatY = evt.getYOnScreen();
-        this.setLocation(kordinatX-mouseX, kordinatY-mouseY);
+        this.setLocation(kordinatX - mouseX, kordinatY - mouseY);
     }//GEN-LAST:event_panel_dasarMouseDragged
 
     private void panel_dasarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_dasarMousePressed
-        mouseX= evt.getX();
+        mouseX = evt.getX();
         mouseY = evt.getY();
     }//GEN-LAST:event_panel_dasarMousePressed
 
     private void input_waktuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_waktuKeyPressed
         char c = evt.getKeyChar();
         //Untuk memasukkan jenis input Angka
-        if(Character.isLetter(c)){
+        if (Character.isLetter(c)) {
             input_waktu.setEditable(false);
 
-        }else{
+        } else {
             input_waktu.setEditable(true);
         }
     }//GEN-LAST:event_input_waktuKeyPressed
@@ -677,10 +971,10 @@ public class App extends javax.swing.JFrame {
     private void input_kodekelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_kodekelasKeyPressed
         char c = evt.getKeyChar();
         //Untuk memasukkan jenis Text
-        if(Character.isLetter(c)){
+        if (Character.isLetter(c)) {
             input_kodekelas.setEditable(true);
 
-        }else{
+        } else {
             input_kodekelas.setEditable(false);
         }
     }//GEN-LAST:event_input_kodekelasKeyPressed
@@ -689,6 +983,61 @@ public class App extends javax.swing.JFrame {
         // TODO add your handling code here:
         savedata();
     }//GEN-LAST:event_saveActionPerformed
+
+    private void input_kodekelas1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_kodekelas1KeyPressed
+        char c = evt.getKeyChar();
+        //Untuk memasukkan jenis Text
+        if (Character.isLetter(c)) {
+            input_kodekelas1.setEditable(true);
+
+        } else {
+            input_kodekelas1.setEditable(false);
+        }
+    }//GEN-LAST:event_input_kodekelas1KeyPressed
+
+    private void input_waktu1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_waktu1KeyPressed
+        char c = evt.getKeyChar();
+        //Untuk memasukkan jenis input Angka
+        if (Character.isLetter(c)) {
+            input_waktu1.setEditable(false);
+
+        } else {
+            input_waktu1.setEditable(true);
+        }
+    }//GEN-LAST:event_input_waktu1KeyPressed
+
+    private void save1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save1ActionPerformed
+        //edit data
+        editdata();
+    }//GEN-LAST:event_save1ActionPerformed
+
+    private void input_kodeMK1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_input_kodeMK1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input_kodeMK1KeyPressed
+
+    private void jadwalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwalMouseClicked
+        int baris = jadwal.rowAtPoint(evt.getPoint());
+        String KodeMataKuliah = jadwal.getValueAt(baris, 0).toString();
+        input_kodeMK1.setText(KodeMK);//Ruangan
+        String KodeKelas = jadwal.getValueAt(baris, 1).toString();
+        input_kodekelas1.setText(KodeKLS);
+        String ruangan;
+        Ruangan = jadwal.getValueAt(baris, 2).toString();
+        input_ruangan1.setText(Ruangan);
+        String NamaMataKuliah = jadwal.getValueAt(baris, 3).toString();
+        input_namamk1.setText(NamaMataKuliah);
+        String SKS = jadwal.getValueAt(baris, 4).toString();
+        input_sks1.setSelectedItem(sks);
+        String Hari = jadwal.getValueAt(baris, 5).toString();
+        input_hari1.setSelectedItem(Hari);
+        String Waktu = jadwal.getValueAt(baris, 6).toString();
+        input_waktu1.setText(time);
+
+    }//GEN-LAST:event_jadwalMouseClicked
+
+    private void input_sks1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_sks1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input_sks1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -722,8 +1071,7 @@ public class App extends javax.swing.JFrame {
             public void run() {
                 new App().setVisible(true);
                 App App = new App();
-                
-                
+
             }
         });
     }
@@ -734,25 +1082,46 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JLabel background_create;
     private javax.swing.JLabel background_jadwal;
     private javax.swing.JButton cancel;
+    private javax.swing.JButton cancel1;
     private javax.swing.JLabel exit;
     private javax.swing.JComboBox<String> input_hari;
+    private javax.swing.JComboBox<String> input_hari1;
+    private javax.swing.JTextField input_kodeMK1;
     private javax.swing.JTextField input_kodekelas;
+    private javax.swing.JTextField input_kodekelas1;
     private javax.swing.JTextField input_kodemk;
     private javax.swing.JTextField input_namamk;
+    private javax.swing.JTextField input_namamk1;
     private javax.swing.JTextField input_ruangan;
+    private javax.swing.JTextField input_ruangan1;
     private javax.swing.JComboBox<String> input_sks;
+    private javax.swing.JComboBox<String> input_sks1;
     private javax.swing.JTextField input_waktu;
+    private javax.swing.JTextField input_waktu1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator14;
+    private javax.swing.JSeparator jSeparator15;
+    private javax.swing.JSeparator jSeparator16;
+    private javax.swing.JSeparator jSeparator17;
+    private javax.swing.JSeparator jSeparator18;
+    private javax.swing.JSeparator jSeparator19;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator20;
+    private javax.swing.JSeparator jSeparator21;
+    private javax.swing.JSeparator jSeparator22;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTable jadwal;
     private javax.swing.JPanel laman_create;
@@ -760,19 +1129,31 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JPanel laman_jadwal;
     private javax.swing.JLabel lb_create;
     private javax.swing.JLabel lb_hari;
+    private javax.swing.JLabel lb_hari1;
     private javax.swing.JLabel lb_jadwal;
     private javax.swing.JLabel lb_navbar;
     private javax.swing.JLabel lb_sks;
+    private javax.swing.JLabel lb_sks1;
     private javax.swing.JLabel lb_waktu;
+    private javax.swing.JLabel lb_waktu1;
     private javax.swing.JLabel lbkode_kelas;
+    private javax.swing.JLabel lbkode_kelas1;
     private javax.swing.JLabel lbkode_matkul;
+    private javax.swing.JLabel lbkode_matkul1;
     private javax.swing.JPanel lbl_err1;
+    private javax.swing.JPanel lbl_err10;
     private javax.swing.JPanel lbl_err2;
     private javax.swing.JPanel lbl_err3;
     private javax.swing.JPanel lbl_err4;
     private javax.swing.JPanel lbl_err5;
+    private javax.swing.JPanel lbl_err6;
+    private javax.swing.JPanel lbl_err7;
+    private javax.swing.JPanel lbl_err8;
+    private javax.swing.JPanel lbl_err9;
     private javax.swing.JLabel lbnama_mk;
+    private javax.swing.JLabel lbnama_mk1;
     private javax.swing.JLabel lbruangan;
+    private javax.swing.JLabel lbruangan1;
     private javax.swing.JLabel maximize;
     private javax.swing.JScrollPane menu;
     private javax.swing.JLabel minimize;
@@ -780,6 +1161,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JPanel panel_dasar;
     private javax.swing.JPanel panel_menu;
     private javax.swing.JButton save;
+    private javax.swing.JButton save1;
     private javax.swing.JScrollPane scrool_jadwal;
     private javax.swing.JPanel show_jadwal;
     private javax.swing.JSeparator sp1;
